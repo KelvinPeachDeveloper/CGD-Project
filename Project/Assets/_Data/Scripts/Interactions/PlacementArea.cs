@@ -1,14 +1,5 @@
-using Interaction;
-using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Drawing;
-using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal.Internal;
-using UnityEngine.SceneManagement;
 
 namespace Interaction
 {
@@ -93,6 +84,8 @@ namespace Interaction
             //      position in the area     placement object's position   total scale of the object in its heirarchy   the height needed to get the object out of the floor
             return positions[idx].position + gameObject.transform.position - (gameObject.transform.lossyScale / 2) + new Vector3(0, current_obj.transform.localScale.y / 2, 0);
         }
+
+        public virtual void Release() { }
 
     }
 }
