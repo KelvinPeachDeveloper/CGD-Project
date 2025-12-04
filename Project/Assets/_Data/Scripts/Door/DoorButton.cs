@@ -1,5 +1,6 @@
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 namespace Interaction
@@ -7,8 +8,11 @@ namespace Interaction
     public class DoorButton : MonoBehaviour, Interactable
     {
         public Door door;
-        private string isTimed;   
-     
+        private string isTimed;
+
+        [SerializeField]
+        UnityEvent OnButtonPressed;
+
         public string MessageInteract => isTimed;
 
         FirstPersonController current_character;
@@ -43,6 +47,7 @@ namespace Interaction
                 Debug.Log("Openning");
                 current_character = interactableControl.gameObject.GetComponent<FirstPersonController>();
                 current_character.enabled = false;
+                OnButtonPressed.Invoke();
                 door.opening = true;
                 door.moving = true;
             }
