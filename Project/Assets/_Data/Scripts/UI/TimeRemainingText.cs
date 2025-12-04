@@ -1,0 +1,66 @@
+using UnityEngine;
+using TMPro;
+
+public class TimeRemainingText : MonoBehaviour
+{
+	[Header("Cache")]
+	[Tooltip("Reference to the time remaining text in the scene")]
+	[SerializeField] private TMP_Text currentTimeRemainingText;
+	[Tooltip("Reference to the Animator component for the text")]
+	[SerializeField] private Animator anim;
+	
+	private void Start()
+	{
+		// Subscribe to events
+		TimeManager.instance.onTimerNearlyRanOut.AddListener(OnHurryUp);
+		TimeManager.instance.onTimerRanOut.AddListener(OnTimeRanOut);
+	}
+	
+	private void Update()
+	{
+		if (!currentTimeRemainingText)
+		{
+			Debug.LogWarning("Current time remaining text not set in the inspector.");
+			return;
+		}
+		
+		if (!TimeManager.instance)
+		{
+			Debug.LogWarning("Time Manager instance not found.");
+			return;
+		}
+		
+		// Update text to one decimal place (the decimal place makes the number appear to be decreasing faster than it really is)
+		if (TimeManager.instance.CurrentTimeRemaining > 0)
+			currentTimeRemainingText.text = "Time: " + TimeManager.instance.CurrentTimeRemaining.ToString("F1") + "s";
+		else
+			currentTimeRemainingText.text = "Time's Up!";
+	}
+	
+	private void OnHurryUp()
+	{
+		// Make text stand out and grab player attention
+		currentTimeRemainingText.color = Color.red;
+		
+		// Play pulsate text animation
+		if (anim)
+			anim.SetBool("IsAnimating", true);
+	}
+	
+	private void OnTimeRanOut()
+	{
+		// Prevent time text being distracting after level ended
+		currentTimeRemainingText.color = Color.white;
+		
+		// Stop pulsate text animation
+		if (anim)
+			anim.SetBool("IsAnimating", false);
+	}
+	
+	private void OnDestroy()
+	{
+		// Unsubscribe from events
+		TimeManager.instance.onTimerNearlyRanOut.RemoveListener(OnHurryUp);
+		TimeManager.instance.onTimerRanOut.RemoveListener(OnTimeRanOut);
+	}
+}

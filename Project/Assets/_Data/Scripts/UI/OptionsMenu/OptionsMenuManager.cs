@@ -5,6 +5,9 @@ public class OptionsMenuManager : MonoBehaviour
 	// Used for back button click
 	public void SaveSettings()
 	{
-		SaveManager.instance.Save();
+		if (SaveManager.instance)
+			SaveManager.instance.Save();
+		else
+			Debug.LogWarning("Save Manager not found");
 	}
 }
