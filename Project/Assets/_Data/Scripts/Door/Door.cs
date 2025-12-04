@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Door : MonoBehaviour
 {
@@ -14,9 +15,10 @@ public class Door : MonoBehaviour
     public bool moving = false;
     public bool opening = true;
     public bool timed = false;
-    
-    
-    
+
+    [SerializeField]
+    UnityEvent OnDoorOpening;
+
     private Vector3 startPos;
     private Vector3 endPos;
     
@@ -37,6 +39,7 @@ public class Door : MonoBehaviour
             if (opening)
             {
                 MoveDoor(endPos);
+                OnDoorOpening.Invoke();
             }
             else
             {
