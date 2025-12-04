@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using static CrateExtensions;
 
 /// <summary>
 /// MonoBehaviour that uses the GameObject's collider to detect and collect crates.
@@ -11,6 +12,7 @@ public class CrateCollector : MonoBehaviour
     [SerializeField]
     GameObject marker;
 
+    [Space, Header("Settings")]
     [SerializeField, Range(0f, 60f)]
     float collectionInterval = 30f;
 
@@ -26,14 +28,19 @@ public class CrateCollector : MonoBehaviour
     [SerializeField]
     bool randomiseRequirementOnCollection = false;
 
+    [SerializeField]
+    bool requireCorrectCrateTag = false;
+
+    [SerializeField]
+    bool randomiseRequiredCorrectCrateTag = true;
+
     [Space, Header("Event Bindings")]
 
     [SerializeField]
     UnityEvent<float> onCollection;
 
     [SerializeField]
-    UnityEvent<int> onRequirementUpdate;
-
+    UnityEvent<CrateRequirement> onRequirementUpdate;
 
     [SerializeField]
     UnityEvent<float> onScoreUpdated;
@@ -49,21 +56,29 @@ public class CrateCollector : MonoBehaviour
 
     float timer = 0f;
     bool canCollect = false;
-    int collectionRequierment = 1;
+    CrateRequirement collectionRequierment;
     float collectionScore = 0f;
     float currentCollectionScore = 0f;
     List<ICollectable> toCollect;
     Material markerMaterial;
 
-    public int Quota => collectionRequierment;
-    bool RequirementMet => (toCollect.Count >= collectionRequierment);
+    public int Quota => collectionRequierment.requiredCount;
+    public CrateTag RequiredTag => collectionRequierment.requiredTag;
+    bool RequirementMet => (toCollect.Count >= collectionRequierment.requiredCount);
+
     void UpdateRequirement()
     {
-        collectionRequierment = UnityEngine.Random.Range(requirementRange.x, requirementRange.y);
-        onRequirementUpdate.Invoke(collectionRequierment);
+        var req = new CrateRequirement()
+        {
+            requiredCount = UnityEngine.Random.Range(requirementRange.x, requirementRange.y + 1),
+            requiredTag = randomiseRequiredCorrectCrateTag ? GetRandomCrateTag() : CrateTag.Red,
+        };
+
+        collectionRequierment = req;
+        onRequirementUpdate.Invoke(req);
     }
 
-    void initialise()
+    void Initialise()
     {
         if (!TryGetComponent<Collider>(out Collider collectorCollider))
         {
@@ -75,6 +90,7 @@ public class CrateCollector : MonoBehaviour
             markerMaterial = renderer.sharedMaterial;
             markerMaterial.SetColor("_BaseColor", activeColor);
         }
+
         UpdateRequirement();
     }
 
@@ -86,12 +102,12 @@ public class CrateCollector : MonoBehaviour
         {
             requirementRange.x = requirementRange.y;
         }
-        initialise();
+        Initialise();
     }
 
     private void Awake()
     {
-        initialise();
+        Initialise();
         toCollect = new List<ICollectable>();
         onScoreUpdated.Invoke(collectionScore);
     }
@@ -139,7 +155,6 @@ public class CrateCollector : MonoBehaviour
         if (timer < collectionInterval) return;
 
         canCollect = true;
-        if (randomiseRequirementOnCollection) UpdateRequirement();
 
         OnCollectionStarted();
         return;
@@ -186,6 +201,8 @@ public class CrateCollector : MonoBehaviour
     {
         // Show requirement text
         onCollectionPeriodStarted.Invoke();
+
+        if (randomiseRequirementOnCollection) UpdateRequirement();
     }
 
     void OnCollectionEnded()
@@ -198,6 +215,8 @@ public class CrateCollector : MonoBehaviour
     void AddCollectableToList(ICollectable collectable)
     {
         if (toCollect.Contains(collectable)) return;
+        if (!requireCorrectCrateTag || collectable.Tag != collectionRequierment.requiredTag) return;
+
         toCollect.Add(collectable);
         collectable.GameObject.GetComponent<PhysicsPickup>().OnGrabbed += RemoveCollectableFromList;
         Debug.Log("Added object");
@@ -207,6 +226,7 @@ public class CrateCollector : MonoBehaviour
     void RemoveCollectableFromList(ICollectable collectable)
     {
         if (!toCollect.Contains(collectable)) return;
+
         toCollect.Remove(collectable);
         collectable.GameObject.GetComponent<PhysicsPickup>().OnGrabbed -= RemoveCollectableFromList;
         Debug.Log("Removing object");
