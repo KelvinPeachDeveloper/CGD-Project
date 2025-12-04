@@ -71,6 +71,12 @@ public class VolumeSlider : MonoBehaviour
 	/// </summary>
     public float GetValue(VolumeType volumeType)
     {
+		if (!SaveManager.instance)
+		{
+			Debug.LogWarning("Save Manager not found");
+			return -1;
+		}
+		
 		float volume = 1.0f;
 		
         switch (volumeType)

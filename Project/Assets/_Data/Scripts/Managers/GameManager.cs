@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     {
         // Subscribe to events
         GameOverButtonInteractable.onPressed += SetGameOverState;
+		TimeManager.instance.onTimerRanOut.AddListener(SetVictoryState);
 
         Time.timeScale = 1.0f; // Reset from any previous playthroughs
         ChangeState(playingState);
@@ -76,6 +77,11 @@ public class GameManager : MonoBehaviour
     {
         ChangeState(gameOverState);
     }
+	
+	private void SetVictoryState()
+	{
+		ChangeState(victoryState);
+	}
 
     #endregion
 
@@ -112,6 +118,7 @@ public class GameManager : MonoBehaviour
     {
         // Unsubscribe from events
         GameOverButtonInteractable.onPressed -= SetGameOverState;
+		TimeManager.instance.onTimerRanOut.RemoveListener(SetVictoryState);
     }
 }
 
