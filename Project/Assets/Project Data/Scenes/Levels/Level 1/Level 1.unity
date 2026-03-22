@@ -1339,6 +1339,69 @@ Transform:
   m_Children: []
   m_Father: {fileID: 236910106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &201062255 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1155797454385775704, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
+  m_PrefabInstance: {fileID: 1338057387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &201062257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
+  m_PrefabInstance: {fileID: 1338057387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201062255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &201062259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201062255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56eb0353ae6e5124bb35b17aff880f16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StringReference:
+    m_TableReference:
+      m_TableCollectionName: GUID:90b65ef8ed180784aa22fcd031cb0779
+    m_TableEntryReference:
+      m_KeyId: 50055844470784
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables:
+    - name: score
+      variable:
+        rid: 1168451480404885812
+  m_FormatArguments: []
+  m_UpdateString:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 201062257}
+        m_TargetAssemblyTypeName: TMPro.TMP_Text, Unity.TextMeshPro
+        m_MethodName: set_text
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1168451480404885812
+      type: {class: FloatVariable, ns: UnityEngine.Localization.SmartFormat.PersistentVariables, asm: Unity.Localization}
+      data:
+        m_Value: 0
 --- !u!1 &236910105
 GameObject:
   m_ObjectHideFlags: 0
@@ -7532,7 +7595,7 @@ PrefabInstance:
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d2cdbe21b71ddb64d87c0464fa88d8f8, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_fontStyle
       value: 0
@@ -7540,7 +7603,7 @@ PrefabInstance:
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2159094415264239183, guid: d2cdbe21b71ddb64d87c0464fa88d8f8, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -10261,11 +10324,11 @@ PrefabInstance:
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: d2cdbe21b71ddb64d87c0464fa88d8f8, type: 2}
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -2159094415264239183, guid: d2cdbe21b71ddb64d87c0464fa88d8f8, type: 2}
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
     - target: {fileID: 5108178942623321616, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
@@ -10350,6 +10413,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6017143089759988115, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
+      propertyPath: localisedString.m_TableEntryReference.m_KeyId
+      value: 50055844470784
+      objectReference: {fileID: 0}
+    - target: {fileID: 6017143089759988115, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
+      propertyPath: localisedString.m_TableReference.m_TableCollectionName
+      value: GUID:90b65ef8ed180784aa22fcd031cb0779
+      objectReference: {fileID: 0}
     - target: {fileID: 7015191034534700767, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
       propertyPath: m_Color.a
       value: 0.78431374
@@ -10365,7 +10436,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1155797454385775704, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 201062259}
   m_SourcePrefab: {fileID: 100100000, guid: db05016db0f4d9447b8145dff9664d86, type: 3}
 --- !u!1001 &1353102956
 PrefabInstance:
@@ -11877,6 +11951,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 663034483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1655107454
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1906006416328881367, guid: d392c086fbd5b584796f8b630b866fc2, type: 3}
+      propertyPath: m_Name
+      value: Level 1 - old 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865433187079741606, guid: d392c086fbd5b584796f8b630b866fc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865433187079741606, guid: d392c086fbd5b584796f8b630b866fc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4865433187079741606, guid: d392c086fbd5b584796f8b630b866fc2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d392c086fbd5b584796f8b630b866fc2, type: 3}
 --- !u!1001 &1655702940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14827,3 +14930,4 @@ SceneRoots:
   - {fileID: 174132810}
   - {fileID: 1353102956}
   - {fileID: 1246264687}
+  - {fileID: 1655107454}

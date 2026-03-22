@@ -47,6 +47,13 @@ public class ScoreObject : ScriptableObject
         VictoryState.onExited -= Clear;
     }
 
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			AddScore(10);
+		}
+	}
 
     private void Set(float v)
     {

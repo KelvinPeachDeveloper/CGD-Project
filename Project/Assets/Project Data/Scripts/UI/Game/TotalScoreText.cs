@@ -1,5 +1,7 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
+using TMPro;
 
 public class TotalScoreText : MonoBehaviour
 {
@@ -9,12 +11,17 @@ public class TotalScoreText : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI display;
 
-    [SerializeField, TextArea]
-    string displayText = "SCORE: ";
+    //[SerializeField, TextArea]
+    //string displayText = "SCORE: ";
+	
+	public LocalizedString localisedString;
+	public FloatVariable scoreVariable;
 
     private void OnEnable()
     {
         scoreObject.onScoreChanged += UpdateText;
+		
+		//localisedString.AddArgument("score", scoreVariable);
     }
 
     private void OnDisable()
@@ -22,9 +29,11 @@ public class TotalScoreText : MonoBehaviour
         scoreObject.onScoreChanged -= UpdateText;
     }
 
-    // This can be assigned to an event to update the displayed text
     public void UpdateText(float score)
     {
-        display.SetText(displayText + score);
+        scoreVariable.Value = score;
+        // LocalizedString will update automatically if bound; otherwise force update below
+        localisedString.RefreshString();
+        display.SetText(localisedString.GetLocalizedString());
     }
 }

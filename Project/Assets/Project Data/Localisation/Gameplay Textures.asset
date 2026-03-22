@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db626ad063b13545924a9839ac5fa83, type: 3}
+  m_Name: Gameplay Textures
+  m_EditorClassIdentifier: 
+  m_SharedTableData: {fileID: 11400000, guid: 68c59af50518f364e9bab29a6d568497, type: 2}
+  m_Tables:
+  - {fileID: 11400000, guid: f2686acaac7754544bb90cc6d7ce17f0, type: 2}
+  - {fileID: 11400000, guid: eaa2babf2b3b5da4eb065f15096abe9f, type: 2}
+  - {fileID: 11400000, guid: e359aab34994d724e91779a2abad8aac, type: 2}
+  - {fileID: 11400000, guid: d53203069f61ade49b8d8f6fd766b0f0, type: 2}
+  - {fileID: 11400000, guid: cf4dbb3f79e96a8489108c4721f89342, type: 2}
+  m_Extensions: []
+  m_Group: Asset Table
+  references:
+    version: 2
+    RefIds: []
