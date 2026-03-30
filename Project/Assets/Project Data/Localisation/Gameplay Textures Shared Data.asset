@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TableCollectionName: Gameplay Textures
   m_TableCollectionNameGuidString: 68c59af50518f364e9bab29a6d568497
-  m_Entries: []
+  m_Entries:
+  - m_Id: 3648484587872256
+    m_Key: warning_sign
+    m_Metadata:
+      m_Items: []
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 1168451706216251392
   m_KeyGenerator:
     rid: 1168451478009151489
   references:
@@ -26,3 +31,16 @@ MonoBehaviour:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
         m_CustomEpoch: 1774034743686
+    - rid: 1168451706216251392
+      type: {class: AssetTypeMetadata, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries:
+        - m_KeyId: 3648484587872256
+          m_TableCodes:
+          - en-GB
+          - fr-FR
+          - it-IT
+          - de-DE
+          - es-ES
+        m_TypeString: UnityEngine.Texture2D, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
